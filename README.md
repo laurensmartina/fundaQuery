@@ -13,6 +13,7 @@ git clone https://github.com/laurensmartina/fundaQuery.git
 composer.phar install
 ```
 Set read/write permissions for app/cache and app/logs.
+When running composer install you can configure the application and the parameters.yml will be created for you.
 
 ## Requirements
 **fundaQuery** has the same requirements as [Symfony2]
