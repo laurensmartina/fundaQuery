@@ -12,6 +12,7 @@ Install PHP 5.4 or newer and composer.
 git clone https://github.com/laurensmartina/fundaQuery.git
 composer.phar install
 ```
+Set read/write permissions for app/cache and app/logs.
 
 ## Requirements
 **fundaQuery** has the same requirements as [Symfony2]
@@ -24,8 +25,7 @@ http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 
 ## Usage
 
-You will need to create a parameters.yml file and put in your credentials for the services.
-You can rename and modify parameters.yml.dist
+When running composer install you can configure the application and the parameters.yml will be created for you.
 
 Available commands:
 
