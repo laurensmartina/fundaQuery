@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}Funda{% endblock %}</title>
+
+    <link rel="icon" sizes="16x16" href="{{ asset('favicon.png') }}"/>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('bundles/fundaquery/css/funda.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <ul class="nav nav-pills pull-right">
+            <li{% if app.request.get('_route') == 'funda_query_homepage' %} class="active"{% endif %}>
+                <a href="{{ path('funda_query_homepage') }}">Home</a>
+            </li>
+            <li{% if app.request.get('_route') == 'funda_query_amsterdam' %} class="active"{% endif %}>
+                <a href="{{ path('funda_query_amsterdam') }}">Amsterdam</a>
+            </li>
+            <li{% if app.request.get('_route') == 'funda_query_amsterdam_tuin' %} class="active"{% endif %}>
+                <a href="{{ path('funda_query_amsterdam_tuin') }}">Amsterdam/tuin</a>
+            </li>
+        </ul>
+        <h3 class="text-muted">Funda query assignment</h3>
+    </div>
+
+    <div class="jumbotron">
+        {% block content %}Content goes here!{% endblock %}
+    </div>
+
+    <div class="footer">
+        <p>&copy; Laurens Martina 2014</p>
+    </div>
+
+</div>
+<!-- /container -->
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</body>
+</html>

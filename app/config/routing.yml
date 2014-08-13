@@ -1,0 +1,4 @@
+funda_query:
+    resource: "@FundaQueryBundle/Resources/config/routing.yml"
+    prefix:   /
+

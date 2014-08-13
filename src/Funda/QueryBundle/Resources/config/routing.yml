@@ -1,0 +1,11 @@
+funda_query_homepage:
+    path:     /
+    defaults: { _controller: FundaQueryBundle:Default:index }
+
+funda_query_amsterdam:
+    path:     /amsterdam/
+    defaults: { _controller: FundaQueryBundle:Query:amsterdam }
+
+funda_query_amsterdam_tuin:
+    path:     /amsterdam/tuin/
+    defaults: { _controller: FundaQueryBundle:Query:amsterdamTuin }
