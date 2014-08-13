@@ -20,8 +20,6 @@ When running composer install you can configure the application and the paramete
 
 ## Usage
 
-When running composer install you can configure the application and the parameters.yml will be created for you.
-
 Available commands:
 
 * funda:query     Fetch a list of real estate that is for sale, sorted by the top 10 real estate agents.
