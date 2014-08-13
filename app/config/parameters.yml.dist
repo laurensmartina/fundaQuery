@@ -1,4 +1,7 @@
 parameters:
     locale: en
     secret: ThisTokenIsNotSoSecretChangeIt
+    debug_toolbar: false
+    debug_redirects: true
+    use_assetic_controller: true
     funda_api_key: my_funda_api_key
