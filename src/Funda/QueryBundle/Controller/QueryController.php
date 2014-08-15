@@ -145,7 +145,7 @@ class QueryController extends Controller
         try {
             $parameters['dataSet'] = $this->getDataResult('/amsterdam/tuin/');
         } catch (HttpException $e) {
-            $parameters['error'] = $e->getMessage();
+            $parameters['error'] = $e->getMessage() . ' Code: ' . $e->getStatusCode();
         }
 
         return $this->render('FundaQueryBundle:Query:topTen.html.twig', $parameters);
@@ -314,7 +314,7 @@ class QueryController extends Controller
                     return $this->fetch($URL);
                 }
             default:
-                throw new HttpException($httpCode, 'The response contains an unexpected result, code: ' . $httpCode);
+                throw new HttpException($httpCode, 'The response contains an unexpected result.');
         }
 
         // Close the connection.

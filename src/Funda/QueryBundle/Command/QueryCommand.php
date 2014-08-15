@@ -2,15 +2,14 @@
 
 namespace Funda\QueryBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Doctrine\Common\Cache\FilesystemCache;
 use Funda\QueryBundle\Controller\QueryController;
-use Symfony\Component\Console\Command\Command;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Helper\Table;
-use Symfony\Component\Console\Helper\TableSeparator;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * Query command.
@@ -24,7 +23,7 @@ class QueryCommand extends ContainerAwareCommand
     {
         $this
             ->setName('funda:query')
-            ->setDescription('Querys Funda objects for sale in Amsterdam.')
+            ->setDescription('Queries Funda objects for sale in Amsterdam.')
             ->addOption('garden', 'g', InputOption::VALUE_NONE, 'Flag to fetch objects with a garden.');
     }
 
@@ -43,7 +42,7 @@ class QueryCommand extends ContainerAwareCommand
         $controller = new QueryController();
 
         $cacheRoot = $this->getContainer()->get('kernel')->getRootDir() . '/cache';
-        $cache = new \Doctrine\Common\Cache\FilesystemCache($cacheRoot);
+        $cache = new FilesystemCache($cacheRoot);
         $controller->setCache($cache);
         $controller->setFundaAPIKey($this->getContainer()->getParameter('funda_api_key'));
 
@@ -51,8 +50,8 @@ class QueryCommand extends ContainerAwareCommand
 
         try {
             $dataSet = $controller->getDataResult($searchSubject);
-        } catch (\Exception $e) {
-            $output->writeln('<error>' . $e->getMessage() . '</error>');
+        } catch (HttpException $e) {
+            $output->writeln('<error>' . $e->getMessage() . ' Code: ' . $e->getStatusCode() . '</error>');
             return;
         }
 
